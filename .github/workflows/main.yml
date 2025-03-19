@@ -1,22 +1,21 @@
-#name: Run PHP Script Every 5 Minutes
+name: Run Multiple Scripts
 
-#on:
- # schedule:
-  #  - cron: '*/5 * * * *'  # تشغيل كل 5 دقائق
-  #workflow_dispatch: # إمكانية تشغيله يدويًا من Actions
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # تشغيل كل 5 دقائق
+  workflow_dispatch:
 
-#jobs:
-#  run-script:
-#    runs-on: ubuntu-latest
-#
- #   steps:
-   #   - name: Clone Repository
-  #      uses: actions/checkout@v4
+jobs:
+  script1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Script 1
+        run: php os.php
 
-    #  - name: Setup PHP
-#        uses: shivammathur/setup-php@v2
-   #     with:
-    #      php-version: '8.1'
-
-   #   - name: Run PHP Script
-  #      run: php os.php
+  script2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Script 2
+        run: php auto_renew.php
